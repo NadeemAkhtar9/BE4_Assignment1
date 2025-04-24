@@ -6,6 +6,15 @@ const Book = require("./models/book.model")
 
 app.use(express.json()) 
 
+const cors = require("cors");
+app.use(cors());
+
+app.use(cors({
+    origin: "https://hqk6p6.csb.app", // Allow CodeSandbox
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  }));
+
 initializeDatabase()
 
 /* app.get("/books",(req,res)=>{
@@ -230,7 +239,7 @@ app.delete("/books/:bookId",async (req,res)=>{
         }
     }
     catch(error){
-        res.status(500).json({error: "Failed to delete Hotel."})
+        res.status(500).json({error: "Failed to delete Book."})
     }
 })
 const PORT = 3000;
